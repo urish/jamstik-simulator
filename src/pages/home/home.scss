@@ -1,3 +1,31 @@
 page-home {
+  .guitar-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 
+  .fret {
+    flex: 1;
+    background: black;
+    border-bottom: ridge gray 3px;
+    display: flex;
+  }
+
+  .string {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+
+    &:before {
+      width: 1px;
+      background: white;
+      content: " ";
+    }
+
+    &.active:before {
+      width: 3px;
+      background: red;
+    }
+  }
 }
