@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 
 declare var bluetoothle;
 
@@ -7,7 +7,10 @@ const MIDI_CHARACTERISTIC = '7772e5db-3868-4112-a1a9-f2669d106bf3';
 
 @Injectable()
 export class DeviceProvider {
-  remoteAddress: string | null;
+  remoteAddress: string | null = null;
+
+  constructor(private zone: NgZone) {
+  }
 
   start() {
     if (typeof bluetoothle !== 'undefined') {
@@ -17,6 +20,10 @@ export class DeviceProvider {
     } else {
       console.error('Please install cordova-plugin-bluetoothle');
     }
+  }
+
+  get connected() {
+    return this.remoteAddress !== null;
   }
 
   sendMidiMessage(timestamp: number, status: number, data1: number, data2: number) {
@@ -48,7 +55,7 @@ export class DeviceProvider {
 
   private onBleReady(result) {
     console.log('onBleReady', result);
-    bluetoothle.initializePeripheral(status => this.bleCallback(status), err => this.onError(err), {
+    bluetoothle.initializePeripheral(status => this.zone.run(() => this.bleCallback(status)), err => this.onError(err), {
       request: true
     });
   }
@@ -88,12 +95,12 @@ export class DeviceProvider {
     if (event.status === 'subscribed') {
       this.remoteAddress = event.address;
     }
-    if (event.StatusBar === 'disconnected') {
+    if (event.status === 'disconnected') {
       this.remoteAddress = null;
     }
   }
 
-  onError(err) {
+  private onError(err) {
     console.log('BLE error', err);
   }
 }

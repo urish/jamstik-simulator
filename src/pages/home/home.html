@@ -3,6 +3,9 @@
     <ion-title>
       JamStik+ Simulator
     </ion-title>
+    <ion-buttons end>
+      <ion-icon name="bluetooth" [class.connected]="connected"></ion-icon>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -10,7 +13,7 @@
   <div class="guitar-body">
     <div *ngFor="let fret of frets" class="fret">
       <span *ngFor="let string of strings" class="string"
-        [class.active]="isActive(fret, string)" (click)="play(fret, string)">{{string}}</span>
-    </div>
+      [class.active]="isActive(fret, string)" (click)="play(fret, string)">{{string}}</span>
+  </div>
   </div>
 </ion-content>

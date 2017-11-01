@@ -36,4 +36,8 @@ export class HomePage {
     const id = `${fret}/${stringId}`;
     return this.activeNotes.has(id);
   }
+
+  get connected() {
+    return this.device.connected;
+  }
 }

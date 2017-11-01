@@ -1,4 +1,14 @@
 page-home {
+  ion-icon[name=bluetooth] {
+    color: #aaa;
+    font-size: 2em;
+    padding-right: 0.6em;
+
+    &.connected {
+      color: green;
+    }
+  }
+
   .guitar-body {
     display: flex;
     flex-direction: column;
