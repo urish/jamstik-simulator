@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.urishaked.jamstik_simulator" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.urishaked.jamstik_simulator" version="0.9.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Jamstik+ Simulator</name>
     <description>Jamstik+ Simulator</description>
     <author email="" href="http://ionicframework.com/">Uri Shaked</author>
